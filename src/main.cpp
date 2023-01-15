@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+// Todo: Learn About Armadillo
 #include <armadillo>
 
 int main() {
@@ -26,7 +27,7 @@ int main() {
         }
         output.row(i) += biases;
     }
-
     std::cout << output << std::endl;
+
     return EXIT_SUCCESS;
 }
