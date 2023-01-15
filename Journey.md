@@ -122,3 +122,41 @@ So heres a implementation of a layer of nurons this time using armadillo:
   }
   std::cout << output << "\n";
 ```
+
+## A Batch of Data
+
+To Train, neural networks tend to receive data in batches. So far we have 1D input array. If we imagine each number as a value from different sensor. We can have a set of these also called observations or commonly known as a sample.
+
+often our network is expected to take in many samples at a time. It is faster to train in batches in parallel processing and batches help with generalization during training.
+
+
+
+So Now We have a matrix of inputs and a matrix of weights now and we need to perform dot product on them. As We performed a dot product on a matrix and a vector we treated the matrix as a list of vectors resulting in a list of dot products. Now We need to manage both  matrices as a lists of vector and perform dot product on all of them in all combinations resulting in a lists  of output matrix. This is called the matrix product.
+
+### Matrix Product
+
+To Perform a matrix product of nxm matrix the m1==n2 should be true.
+
+![](assets/2023-01-15-16-54-37-image.png)
+
+Here a dimensions (1x3)
+
+     b dimensions (3x1)
+
+So m1 == n2
+
+Thus We can do Matrix Product
+
+And it should be
+
+$$
+a.b = 1*2 + 2*3 + 3*4
+    = 2 + 6 + 12
+    = 20
+$$
+
+The Relation between Dot Product and a matrix product is
+
+$$
+\vec {a}. \vec {b} = ab^T
+$$
