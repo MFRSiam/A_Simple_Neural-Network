@@ -160,3 +160,47 @@ The Relation between Dot Product and a matrix product is
 $$
 \vec {a}. \vec {b} = ab^T
 $$
+
+
+
+```cpp
+arma::mat a {1,2,3};
+arma::mat b {2,3,4};
+auto c = arma::dot(a,b.t());
+std::cout << c << std::endl;
+```
+
+As we can see, to perform a matrix product on two vectors, we took one as is, transforming it into 
+a row vector, and the second one using transposition on it to turn it into a column vector. That allowed us to perform a matrix product that returned a matrix containing a single value. We also performed the matrix product on two example arrays to learn how a matrix product works — it creates a matrix of dot products of all combinations of row and column vectors.
+
+
+
+## A Layer Of Neurons & Batch Data w/ Armadillo
+
+```cpp
+// Code a Layer of neurons
+    arma::mat inputs = {
+            {1.0,2.0,3.0,2.5},
+            {2.0,5.0,-1.0,2.0},
+            {-1.5,2.7,3.3,-0.8}
+    };
+
+    arma::mat weights = {
+            {0.2,0.5,-0.26},
+            {0.8,-0.91,-0.27},
+            {-0.5,0.26,0.17},
+            {1.0,-0.5,0.87}
+    };
+
+    arma::mat biases {2.0,3.0,0.5};
+    arma::mat output(3,3);
+
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            output(i,j) = arma::dot(inputs.row(i),weights.col(j));
+        }
+        output.row(i) += biases;
+    }
+
+    std::cout << output << std::endl;
+```
