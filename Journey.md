@@ -206,3 +206,19 @@ The Previous Example Has only one layer of data.
 Now We Will try to add more layers.
 
 ![](assets/2023-01-16-14-42-52-image.png)
+
+## Training Data
+
+For Data I needed a function that will generate non-linear data.
+
+![](assets/2023-01-17-19-23-51-image.png)
+
+Not Like This But Something Like The Following
+
+![](assets/2023-01-17-19-24-16-image.png)
+
+For Convenience I am using python for data gen, that's why you can see some python code in the repo.
+
+To Visualize I am using matplot++
+
+![](assets/2023-01-17-19-25-46-image.png)
