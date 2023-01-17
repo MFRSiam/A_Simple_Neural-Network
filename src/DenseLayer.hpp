@@ -17,6 +17,8 @@ public:
     // Forward Pass
     void forward(double inputs);
 
+    arma::mat& getWeight();
+    arma::mat& getBiases();
 private:
     arma::mat weights;
     arma::mat biases;
