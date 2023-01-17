@@ -129,8 +129,6 @@ To Train, neural networks tend to receive data in batches. So far we have 1D inp
 
 often our network is expected to take in many samples at a time. It is faster to train in batches in parallel processing and batches help with generalization during training.
 
-
-
 So Now We have a matrix of inputs and a matrix of weights now and we need to perform dot product on them. As We performed a dot product on a matrix and a vector we treated the matrix as a list of vectors resulting in a list of dot products. Now We need to manage both  matrices as a lists of vector and perform dot product on all of them in all combinations resulting in a lists  of output matrix. This is called the matrix product.
 
 ### Matrix Product
@@ -161,8 +159,6 @@ $$
 \vec {a}. \vec {b} = ab^T
 $$
 
-
-
 ```cpp
 arma::mat a {1,2,3};
 arma::mat b {2,3,4};
@@ -172,8 +168,6 @@ std::cout << c << std::endl;
 
 As we can see, to perform a matrix product on two vectors, we took one as is, transforming it into 
 a row vector, and the second one using transposition on it to turn it into a column vector. That allowed us to perform a matrix product that returned a matrix containing a single value. We also performed the matrix product on two example arrays to learn how a matrix product works — it creates a matrix of dot products of all combinations of row and column vectors.
-
-
 
 ## A Layer Of Neurons & Batch Data w/ Armadillo
 
@@ -204,3 +198,11 @@ a row vector, and the second one using transposition on it to turn it into a col
 
     std::cout << output << std::endl;
 ```
+
+### Adding Layers
+
+The Previous Example Has only one layer of data.
+
+Now We Will try to add more layers.
+
+![](assets/2023-01-16-14-42-52-image.png)
