@@ -15,7 +15,7 @@ public:
     DenseLayer(int n_inputs, int n_neurons);
 
     // Forward Pass
-    void forward(double inputs);
+    void forward(arma::mat inputs);
 
     arma::mat& getWeight();
     arma::mat& getBiases();

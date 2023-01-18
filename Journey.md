@@ -222,3 +222,30 @@ For Convenience I am using python for data gen, that's why you can see some pyth
 To Visualize I am using matplot++
 
 ![](assets/2023-01-17-19-25-46-image.png)
+
+So The Book I am following uses a Python Generator which generates some Non linear data.
+
+So i am using python to generate the data in a txt file which i read in my c++ application.
+
+I wrote a small python app to write the data
+
+```python
+from nnfs.datasets import spiral_data
+import nnfs
+
+nnfs.init()
+
+X, y = spiral_data(samples=100, classes=3)
+
+f = open('data.txt', 'w+')
+
+f.write("Start_X:\n")
+f.write(f'{X}')
+f.write("\nStart_Y:\n")
+f.write(f'{y}\n')
+f.close()
+exit()
+
+```
+
+Then I Used The functions defined in the Helper.hpp header file to read the data.

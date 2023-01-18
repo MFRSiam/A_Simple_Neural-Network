@@ -10,8 +10,9 @@ DenseLayer::DenseLayer(int n_inputs, int n_neurons) {
     this->biases = arma::zeros(1,n_neurons);
 }
 
-void DenseLayer::forward(double inputs) {
+void DenseLayer::forward(arma::mat inputs) {
     // Todo: Calculate Output Valuse from inputs, weights and biases
+
 }
 
 arma::mat &DenseLayer::getWeight() {

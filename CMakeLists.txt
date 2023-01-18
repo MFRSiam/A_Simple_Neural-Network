@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.20)
 project(NeuralNetwork_Project)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 find_package(Armadillo CONFIG REQUIRED)
 find_package(matplot++ CONFIG REQUIRED)
 
-add_executable(NeuralNetwork_Project src/main.cpp src/DenseLayer.cpp src/DenseLayer.hpp)
+add_executable(NeuralNetwork_Project src/main.cpp src/DenseLayer.cpp src/DenseLayer.hpp src/Helper.hpp)
 
 if(MSVC)
     set(CMAKE_EXE_LINKER_FLAGS /MANIFEST:NO)
