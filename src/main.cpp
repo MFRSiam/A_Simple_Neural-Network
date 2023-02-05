@@ -11,9 +11,9 @@
 // My Own Imports
 #include "DenseLayer.hpp"
 #include "Helper.hpp"
+#include "Net.hpp"
 
-
-int main() {
+auto main() -> int {
     arma::mat random(2,5,arma::fill::randu);
     arma::mat zeros(2,5,arma::fill::zeros);
     DenseLayer dl(2,5);

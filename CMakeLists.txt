@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 find_package(Armadillo CONFIG REQUIRED)
 find_package(matplot++ CONFIG REQUIRED)
 
-add_executable(NeuralNetwork_Project src/main.cpp src/DenseLayer.cpp src/DenseLayer.hpp src/Helper.hpp)
+add_executable(NeuralNetwork_Project src/main.cpp src/DenseLayer.cpp src/DenseLayer.hpp src/Helper.hpp src/Net.cpp src/Net.hpp)
 
 if(MSVC)
     set(CMAKE_EXE_LINKER_FLAGS /MANIFEST:NO)
