@@ -7,8 +7,28 @@
  * Please Be Careful while using this namespace
  */
 namespace NeuralNet {
-    class Layers;
-    typedef Layers;
+
+
+    struct Connection{
+        double weight;
+        double deltaWeight;
+        Connection();
+    };
+
+
+
+    class Neuron{
+    public:
+        Neuron(unsigned numOutputs);
+
+    private:
+        double p_outputValue;
+        std::vector<Connection> p_outputWeights;
+    };
+
+
+    typedef std::vector<Neuron> Layers;
+
 
     class Net {
     public:
