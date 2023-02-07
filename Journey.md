@@ -31,7 +31,7 @@ The output of the following program is 2.3
 
 ## A Layer Of Neurons
 
-Neural networks typically have layers that consist of more than one neuron. Layers are nothing more than groups of neurons. Each neuron in a layer takes exactly the same input—the input given to the layer (which can be either the training data or the output from the previous layer), but contains its own set of weights and its own bias, producing its own unique output. The layer’s output is a set of each of these outputs — one per each neuron. Let’s say we have a scenario with 3 neurons in a layer and 4 inputs:
+Neural networks typically have layers that consist of more than one neuron. Layer are nothing more than groups of neurons. Each neuron in a layer takes exactly the same input—the input given to the layer (which can be either the training data or the output from the previous layer), but contains its own set of weights and its own bias, producing its own unique output. The layer’s output is a set of each of these outputs — one per each neuron. Let’s say we have a scenario with 3 neurons in a layer and 4 inputs:
 
 ![](assets/2023-01-14-15-43-40-image.png)
 
@@ -199,7 +199,7 @@ a row vector, and the second one using transposition on it to turn it into a col
     std::cout << output << std::endl;
 ```
 
-### Adding Layers
+### Adding Layer
 
 The Previous Example Has only one layer of data.
 
