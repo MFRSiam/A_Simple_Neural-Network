@@ -23,16 +23,26 @@ namespace NeuralNet {
     public:
         Neuron(unsigned numOutputs,unsigned myIndex);
         void feedForward(const Layer &prevLayer);
+        void calcOutputGradient(double targetVal);
+        void calcHiddenGradient(const Layer &nextLayer);
+        double sumDOW(const Layer &nextLayer)const ;
+        void updateInputWeight(Layer &prevLayer);
+
+
 
         void setOutputValue(const double &value);
         double getOutputValue() const;
 
+
     private:
+        static double eta;
+        static double alpha;
         static double transformFunction(double sum);
         static double transformFunctionDerivative(double sum);
         double p_outputValue;
         std::vector<Connection> p_outputWeights;
         unsigned p_myIndex;
+        double p_gradient;
     };
 
 
@@ -46,6 +56,9 @@ namespace NeuralNet {
 
     private:
         std::vector<Layer> p_Layers;
+        double p_error;
+        double p_recentAvgError;
+        double p_recentAvgSmootingFactor;
     };
 
 } // NeuralNet

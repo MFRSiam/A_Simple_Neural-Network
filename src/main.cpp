@@ -14,6 +14,11 @@
 #include "Net.hpp"
 
 auto main() -> int {
+
+    return EXIT_SUCCESS;
+}
+
+/*
     arma::mat random(2,5,arma::fill::randu);
     arma::mat zeros(2,5,arma::fill::zeros);
     DenseLayer dl(2,5);
@@ -22,5 +27,4 @@ auto main() -> int {
     GeneratedData G = ReadData();
     std::cout << G.X << std::endl;
     std::cout << G.y << std::endl;
-    return EXIT_SUCCESS;
-}
+ */
