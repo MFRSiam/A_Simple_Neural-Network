@@ -49,6 +49,16 @@ public:
             m_layer[i].bias = biases[i];
         }
     }
+    std::vector<Neuron> *getLayer(){
+        return &m_layer;
+    }
+    std::vector<std::vector<double>> *getWeight(){
+        return &m_weights;
+    }
+
+    int getSize(){
+        return m_layer.size();
+    }
 };
 
 
@@ -76,6 +86,23 @@ public:
 
     void setLayerBias(std::vector<double> &&biases){
         m_network[1].setBias(biases);
+    }
+    void feedForward(){
+        for(int i=1;i<m_network.size();i++){
+            auto val = m_network[i].getLayer();
+            auto tempWeight = m_network[i].getWeight();
+            int prevLayerSize = m_network[i-1].getSize();
+            auto prevLayer = m_network[i-1].getLayer();
+            for(int currentNeuron = 0; currentNeuron < val->size(); currentNeuron++){
+                double temp = 0;
+                for(int j=0;j<prevLayerSize;j++){
+                    temp += (*prevLayer)[j].value * (*tempWeight)[currentNeuron][j];
+                }
+                temp += (*val)[currentNeuron].bias;
+
+                (*val)[currentNeuron].value = temp;
+            }
+        }
     }
 
 };

@@ -17,5 +17,6 @@ int main() {
     };
     n1->setLayerWeights(weights);
     n1->setLayerBias({2.0,3.0,0.5});
+    n1->feedForward();
     return EXIT_SUCCESS;
 }
