@@ -248,4 +248,33 @@ exit()
 
 ```
 
-Then I Used The functions defined in the Helper.hpp header file to read the data.
+Then I Used The functions ```GeneratedData ReadData()``` defined in the Helper.hpp header file to read the data.
+
+So now my Program Gets Access to data generated in python.
+
+```tex
+Start_X:
+[[ 0.00000000e+00  0.00000000e+00]
+ [ 2.99555692e-03  9.64660756e-03]
+ [ 1.28809698e-02  1.55628482e-02]
+ [ 2.99747903e-02  4.44809627e-03]
+ [ 3.93124595e-02  9.32828337e-03]
+ [ 8.28829070e-04  5.04982509e-02]
+ [ 5.34835160e-02  2.85062827e-02]
+ [ 4.17361967e-02  5.70752136e-02]
+ [ 5.54633923e-02  5.87686822e-02] 
+...................................
+...................................
+...................................
+Start_Y:
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 
+........................
+........................
+........................
+```
+
+but the data here is 300X2 matrix and y is a vector of 300 elements .
+
+now we have in our denseLayer class a 2X5 matrix which is weights and biases 
