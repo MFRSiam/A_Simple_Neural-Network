@@ -5,6 +5,7 @@
 #include <string>
 
 #include "Network.hpp"
+#include "MlAlgorithms.hpp"
 
 int main() {
     auto *n1 = new Network({4,3,3});
@@ -30,8 +31,10 @@ int main() {
 //    n1->setLayerWeights(weights2,2);
 
     n1->setRandomWeights();
-    n1->setLayerBias({2.0,3.0,0.5});
-    n1->setLayerBias({-1, 2, -0.5},2);
+    n1->setZeroBias();
+    n1->setDenseLayerActivation(MlAlgorithm::Activations::Relu_Activation);
+//    n1->setLayerBias({2.0,3.0,0.5});
+//    n1->setLayerBias({-1, 2, -0.5},2);
     for(const auto & i : inputData){
         n1->setLayer(i);
         n1->feedForward();

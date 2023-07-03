@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 #include <random>
+#include <functional>
 
 struct Neuron{
     double value;
@@ -17,6 +18,7 @@ class Layer{
 private:
     std::vector<Neuron> m_layer;
     std::vector<std::vector<double>> m_weights;
+    std::function<double(double)> dense_Activate;
 public:
     void resize(int size,int prevLayerSize = 0){
         m_layer.resize(size);
@@ -36,6 +38,7 @@ public:
         }
     }
 
+
     void setWeights(const std::vector<std::vector<double>> &weights){
         if(m_weights.size()!=weights.size()){
             throw std::exception("Incompatible Size");
@@ -45,6 +48,8 @@ public:
         }
     }
 
+
+    // Todo: Make This a STD Generator
     void setWeights(){
         const double mean = 0.0f;
         const double varience = 1.0f;
@@ -54,7 +59,7 @@ public:
 
         for(int i=0;i<m_weights.size();i++){
             for(int j=0;j<m_weights[i].size();j++){
-                m_weights[i][j] = dist(engine);
+                m_weights[i][j] = dist(engine) * 0.01f;
             }
         }
     }
@@ -64,6 +69,13 @@ public:
             m_layer[i].bias = biases[i];
         }
     }
+
+    void setBias(){
+        for(auto & i : m_layer){
+            i.bias = 0.0f;
+        }
+    }
+
     std::vector<Neuron> *getLayer(){
         return &m_layer;
     }
@@ -73,6 +85,15 @@ public:
 
     int getSize(){
         return (int)m_layer.size();
+    }
+
+    void runActivationFunction(){
+        for(auto & i : m_layer){
+            i.value = dense_Activate(i.value);
+        }
+    }
+    void setActivationFunction(const std::function<double(double)>& func){
+        this->dense_Activate = func;
     }
 };
 
@@ -113,6 +134,13 @@ public:
     void setLayerBias(std::vector<double> &&biases,int layerNum = 1){
         m_network[layerNum].setBias(biases);
     }
+
+    void setZeroBias(){
+        for(int i=0;i<m_network.size();i++){
+            m_network[i].setBias();
+        }
+    }
+
     void feedForward(){
         for(int i=1;i<m_network.size();i++){
             auto val = m_network[i].getLayer();
@@ -128,10 +156,21 @@ public:
 
                 (*val)[currentNeuron].value = temp;
             }
+            // Check If Dense Layer or Output Layer
+            if(i!=m_network.size()-1){
+                //Then Dense , So run Dense Layer Activation
+                m_network[i].runActivationFunction();
+            }
         }
     }
     std::vector<Neuron>* getOutputLayer(){
         return m_network[m_network.size()-1].getLayer();
+    }
+
+    void setDenseLayerActivation(const std::function<double(double)>& func){
+        for(int i=1;i<(m_network.size()-1);i++){
+            m_network[i].setActivationFunction(func);
+        }
     }
 
 };

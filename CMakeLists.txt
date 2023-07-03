@@ -33,7 +33,7 @@ endif()
 
 
 # Main Project
-add_executable(NeuralNetwork_Project src/main.cpp src/Helper.hpp src/Network.cpp src/Network.hpp src/Gui.cpp src/Gui.hpp)
+add_executable(NeuralNetwork_Project src/main.cpp src/Helper.hpp src/Network.cpp src/Network.hpp src/Gui.cpp src/Gui.hpp src/MlAlgorithms.cpp src/MlAlgorithms.hpp)
 
 if(MSVC)
     set(CMAKE_EXE_LINKER_FLAGS /MANIFEST:NO)
