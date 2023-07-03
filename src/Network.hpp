@@ -35,7 +35,7 @@ public:
         }
     }
 
-    void setWeights(std::vector<std::vector<double>> &weights){
+    void setWeights(const std::vector<std::vector<double>> &weights){
         if(m_weights.size()!=weights.size()){
             throw std::exception("Incompatible Size");
         }
@@ -57,7 +57,7 @@ public:
     }
 
     int getSize(){
-        return m_layer.size();
+        return (int)m_layer.size();
     }
 };
 
@@ -80,12 +80,17 @@ public:
         m_network[0].set(layer);
     }
 
-    void setLayerWeights(std::vector<std::vector<double>> &weights){
-        m_network[1].setWeights(weights);
+    void setLayer(const std::vector<double> &layer){
+        m_network[0].set(layer);
     }
 
-    void setLayerBias(std::vector<double> &&biases){
-        m_network[1].setBias(biases);
+
+    void setLayerWeights(const std::vector<std::vector<double>> &weights,int layerNum=1){
+        m_network[layerNum].setWeights(weights);
+    }
+
+    void setLayerBias(std::vector<double> &&biases,int layerNum = 1){
+        m_network[layerNum].setBias(biases);
     }
     void feedForward(){
         for(int i=1;i<m_network.size();i++){
@@ -103,6 +108,9 @@ public:
                 (*val)[currentNeuron].value = temp;
             }
         }
+    }
+    std::vector<Neuron>* getOutputLayer(){
+        return m_network[m_network.size()-1].getLayer();
     }
 
 };

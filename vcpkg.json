@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "dependencies": [
     "armadillo",
-    "matplotplusplus"
+    "matplotplusplus",
+    {
+      "name": "raylib",
+      "features": ["hidpi","use-audio"]
+    }
   ]
 }
