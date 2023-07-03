@@ -33,6 +33,7 @@ int main() {
     n1->setRandomWeights();
     n1->setZeroBias();
     n1->setDenseLayerActivation(MlAlgorithm::Activations::Relu_Activation);
+    n1->setOutputLayerActivation(MlAlgorithm::Activations::SoftMax_Activation);
 //    n1->setLayerBias({2.0,3.0,0.5});
 //    n1->setLayerBias({-1, 2, -0.5},2);
     for(const auto & i : inputData){

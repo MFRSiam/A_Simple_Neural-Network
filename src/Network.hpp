@@ -18,7 +18,8 @@ class Layer{
 private:
     std::vector<Neuron> m_layer;
     std::vector<std::vector<double>> m_weights;
-    std::function<double(double)> dense_Activate;
+    std::function<double(double)> this_Activate;
+    std::function<void(std::vector<Neuron>&)> output_activate;
 public:
     void resize(int size,int prevLayerSize = 0){
         m_layer.resize(size);
@@ -87,13 +88,21 @@ public:
         return (int)m_layer.size();
     }
 
-    void runActivationFunction(){
-        for(auto & i : m_layer){
-            i.value = dense_Activate(i.value);
+    void runActivationFunction(bool outputLayer = false){
+        if(!outputLayer){
+            for(auto & i : m_layer){
+                i.value = this_Activate(i.value);
+            }
+        }else{
+            output_activate(m_layer);
         }
+
     }
     void setActivationFunction(const std::function<double(double)>& func){
-        this->dense_Activate = func;
+        this->this_Activate = func;
+    }
+    void setActivationFunction(const std::function<void(std::vector<Neuron>&)>& func){
+        this->output_activate = func;
     }
 };
 
@@ -160,6 +169,8 @@ public:
             if(i!=m_network.size()-1){
                 //Then Dense , So run Dense Layer Activation
                 m_network[i].runActivationFunction();
+            }else{
+                m_network[i].runActivationFunction(true);
             }
         }
     }
@@ -171,6 +182,10 @@ public:
         for(int i=1;i<(m_network.size()-1);i++){
             m_network[i].setActivationFunction(func);
         }
+    }
+
+    void setOutputLayerActivation(const std::function<void(std::vector<Neuron>&)>& func){
+        m_network[m_network.size()-1].setActivationFunction(func);
     }
 
 };
