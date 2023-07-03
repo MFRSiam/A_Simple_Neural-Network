@@ -6,6 +6,7 @@
 #define NEURALNETWORK_PROJECT_NETWORK_HPP
 #include <vector>
 #include <string>
+#include <random>
 
 struct Neuron{
     double value;
@@ -41,6 +42,20 @@ public:
         }
         for(int i=0;i<weights.size();i++){
             m_weights[i] = weights[i];
+        }
+    }
+
+    void setWeights(){
+        const double mean = 0.0f;
+        const double varience = 1.0f;
+        std::random_device rd{};
+        std::mt19937 engine{rd()};
+        std::normal_distribution<double> dist(mean,varience);
+
+        for(int i=0;i<m_weights.size();i++){
+            for(int j=0;j<m_weights[i].size();j++){
+                m_weights[i][j] = dist(engine);
+            }
         }
     }
 
@@ -87,6 +102,12 @@ public:
 
     void setLayerWeights(const std::vector<std::vector<double>> &weights,int layerNum=1){
         m_network[layerNum].setWeights(weights);
+    }
+
+    void setRandomWeights(){
+        for(int i=0;i<m_network.size();i++){
+            m_network[i].setWeights();
+        }
     }
 
     void setLayerBias(std::vector<double> &&biases,int layerNum = 1){
