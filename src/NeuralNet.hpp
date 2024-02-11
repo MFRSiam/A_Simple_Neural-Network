@@ -9,7 +9,7 @@
 #include <functional>
 #include <cmath>
 
-class Neural_Net {
+class Neural_Net{
 public:
     explicit Neural_Net(std::vector<int> &&structure){
         net.resize(structure.size());
