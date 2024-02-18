@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <functional>
 #include <cmath>
+#include <numeric>
 
 class Neural_Net{
 public:
@@ -36,6 +37,10 @@ public:
         return (float)1.0/(float)(1.0+std::exp(-sum));
     }
 
+    static float derivative_sigmoid(float sum){
+        return sigmoid(sum) * (1 - sigmoid(sum));
+    }
+
     void feedForward(const std::vector<float> &inputData){
         if(inputData.size() != net[0].size()){
             throw std::exception("Input Data and Net Size didnt match");
@@ -62,8 +67,34 @@ public:
         }
     }
 
+    static float MeanSquaredError(const std::vector<float> &y_pred,const std::vector<float> &y_real){
+        if (y_pred.size() != y_real.size()) {
+            throw std::exception("Input and target vector sizes must match.");
+        }
 
-    void SGD(){
+        float mse = 0.0f;
+        for (int i = 0; i < y_pred.size(); ++i) {
+            float diff = y_pred[i] - y_real[i];
+            mse += diff * diff;
+        }
+        mse /= (float)y_pred.size();
+
+        return mse;
+    }
+
+    void SGD(std::vector<float> X_input,std::vector<float> Y_true){
+        feedForward(X_input);
+        float loss = MeanSquaredError(net[net.size()-1],Y_true);
+
+        for(int i=1;i<net.size();i++){
+            for(int neuron=0;neuron<net[i].size();neuron++){
+                const std::vector<std::vector<float>> &layer_weights = weights[i-1];
+                float sum = weightsXactivations(net[i-1],layer_weights[neuron]);
+                sum += bias[i-1][neuron];
+                sum = sigmoid(sum);
+                net[i][neuron] = sum;
+            }
+        }
 
     }
 
@@ -79,6 +110,8 @@ private:
         }
         return sum;
     }
+
+
 };
 
 

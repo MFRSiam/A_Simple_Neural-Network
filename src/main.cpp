@@ -3,6 +3,6 @@
 #include "NeuralNet.hpp"
 
 int main() {
-    Neural_Net n1({10,5,3});
+    Neural_Net n1({5,3,2});
     return EXIT_SUCCESS;
 }
